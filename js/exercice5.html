@@ -1,0 +1,29 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    
+</head>
+<body>
+    <p>Hello</p>
+    <!-- Old way 
+    <script src = "exercice4.js"></script>-->
+
+    <!-- New way -->
+    <script type = "module">
+        // monModule est necessaire comme on récupère tout
+        // import * as monModule from './exercice5.js';
+        // const x = monModule.afficheTemplate();
+        // console.log(x);
+
+        import {disBonjour} from './exercice5.js';
+        const x = disBonjour();
+        console.log(x);
+    </script>
+
+    
+</body>
+</html>
