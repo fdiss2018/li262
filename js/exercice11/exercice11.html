@@ -1,0 +1,81 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    .invisible {
+        display: none;
+    }
+</style>    
+
+
+</head>
+
+<body>
+    <P id="nb_visiteurs"></p>
+    <div id="form_login">
+        <input type="text" name="nom" id = "nom"> 
+        <input type="text" name="prenom" id = "prenom">
+        <input type="button" value="Valider" id = "Btn">
+    </div>
+    <div id="welcom">
+            <p>Welcom</p> <input type="button" value="LogOut" id = "btnLogOut">
+    </div>
+
+    <script type="text/javascript">
+
+        function refresh(u) {
+            document.querySelector("#form_login").className = "invisible";
+            document.querySelector("#welcom").className = "";
+            document.querySelector("#welcom").innerHTML = "Welcome " + u.nom + " " + u.prenom;    
+        }
+
+        // est ce qu' on est sur un navigateur suporte le local storage
+        if (typeof (localStorage) != null) {
+            console.log("ok");
+            console.log(localStorage["nb_visiteurs"])
+            if (localStorage["nb_visiteurs"] == null) {
+                localStorage["nb_visiteurs"] = 0;
+            } else {
+                localStorage["nb_visiteurs"]++;
+            }
+            document.querySelector("#nb_visiteurs").innerHTML = localStorage["nb_visiteurs"];
+
+            // Affichage utilisateur courant
+            if (localStorage["utilisateur_courant"] != null) {
+                const u = JSON.parse(localStorage["utilisateur_courant"]);
+                refresh(u);
+            } else {
+                document.querySelector("#form_login").className = "";
+                document.querySelector("#welcom").className = "invisible";
+
+                document.querySelector("#Btn").onclick = function() {
+                    let user = {};
+                    user.nom = document.querySelector("#nom").value;
+                    user.prenom = document.querySelector("#prenom").value;
+                    localStorage["utilisateur_courant"] = JSON.stringify(user);
+
+                    refresh(user);
+                    
+                }
+            }    
+            
+
+
+        } else {
+            console.log("Nok");
+        }
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>

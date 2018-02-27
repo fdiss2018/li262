@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <style>
+            .pair {
+                background-color: red;
+            }
+            .impair {
+                background-color: grey;
+            }
+    </style>  
+
+</head>
+<body>
+    
+<p id = "p1" class = "impair">bonjour</p>
+<p id = "p2">bonjour p2</p>
+<p id = "p3" class = "impair">bonjour p3</p>
+
+<button id = "btn">Click</button>
+
+<div id = "mondiv" style = "width:200px;height:200px;background-color: grey">test double click</div>
+
+<input type = "text" id ="prenom" placeholder="prenom">
+<button id = "btn_prenom">Click prenom</button>
+<button id = "btn_reset">Reset</button>
+<button id = "btn_reset2">Reset pair</button>
+<ul id="list_prenoms">
+</ul>
+
+<script type = "text/javascript">
+
+$(document).ready(function(){
+    //console.log("ok");
+    
+    // Selection par id
+    // $("#p1").hide();
+    
+    // Selection par type de noeud
+    // $("p").hide();
+
+    // Selection par class
+    //$(".impair").hide();
+
+
+   // Selection par id
+    $("#btn").click(function(){
+        console.log("clické");
+    });
+
+    $("#mondiv").dblclick(function(){
+        console.log("double clické");
+    });
+    
+    // Définir la fonction double click aux noeuds P
+     $("p").dblclick(function(){
+        console.log("double clické p");
+        $(this).hide();
+    });
+
+    // idem : Appliquer la même fonction à tous les éléments
+    // $("p").each(function(){
+    //     $(this).dblclick(function(){
+    //         $(this).hide();
+    //     })
+    // });
+
+    // Selection par id
+     const u = $("#p1").text();
+     console.log(u);
+     $("#p1").click(function(){
+         // la diference entre texte et Html : l'interpretation
+        $("#p1").text("Au <STRONG>revoir</STRONG>Felix");
+        $("#p1").click(function(){
+            $("#p1").html("Au <STRONG>revoir</STRONG>Felix");
+        });
+    });
+     
+       // Ajout prenom
+       $("#btn_prenom").click(function(){
+           console.log($("#prenom").val());
+            // $("#list_prenoms").prepend("<Li>"+$("#prenom").val()+"</Li>");
+            if ($("#list_prenoms").children().length%2 == 0) {
+                $("#list_prenoms").append("<Li class = 'impair'>"+$("#prenom").val()+"</Li>");
+            } else {
+                $("#list_prenoms").append("<Li class = 'pair'>"+$("#prenom").val()+"</Li>");
+            }
+            $("#prenom").val("");
+            
+        });
+
+        // reset de la liste et du champs
+        $("#btn_reset").click(function(){
+            $("#prenom").val("");
+            $("#list_prenoms").html("");
+        });
+
+        $("#btn_reset2").click(function(){
+            console.log("er");
+            // supprime l'élément
+            // $("#list_prenoms").remove();
+            // vide l'élément
+             $("#list_prenoms .pair").remove();
+             // $("#list_prenoms li:nth-child(2n)").remove();
+
+        });
+
+})
+
+</script>
+
+</body>
+</html>
