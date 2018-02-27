@@ -1,0 +1,180 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+<style>
+    p {
+        font-weight: bold
+    }
+
+    #p1 {
+        color: blue;
+    }
+
+    .rouge {
+        color: red;
+    }
+
+    tbody tr:nth-child(2n) {
+        background-color : grey;
+    }
+
+    thead tr:first-child() {
+        background-color : red;
+    }
+
+    tbody tr:last-child(2n) {
+        background-color : yellow;
+    }
+
+</style>  
+      
+</head>
+<body>
+    <p> Paragraphe 1</p>
+    <p id = "p1"> Paragraphe 2</p>
+    <p class = "rouge"> Paragraphe 3</p>
+    <p class = "rouge"> Paragraphe 4</p>
+    
+    <!-- New way -->
+    <script type = "module">
+        let compteur_personne = 45;
+        let lstPeople = [];
+        
+        import {People} from './People10.js';
+        import * as moduleA from './exercice10.js';
+
+
+ function afficheTableau() {
+    document.querySelector("#lstPersonne").innerHTML = "";
+    for (let i = 0; i < lstPeople.length; i++) {
+
+        let IdB = "myButton" + lstPeople[i].id;
+
+        document.querySelector("#lstPersonne").innerHTML += "<TR>";
+        document.querySelector("#lstPersonne").innerHTML += "<TD>" + lstPeople[i].id + "</TD><TD>" + lstPeople[i].nom + "</TD><TD>" + lstPeople[i].prenom + "</TD><TD>" + lstPeople[i].age + "</TD>" + '<TD><input type="button" id = "' + IdB + '" value = "DEL"></TD>';
+        document.querySelector("#lstPersonne").innerHTML += "</TR>";
+
+        // console.log(document.querySelector("#"+Id)+ " _ " + Id);
+    }
+
+    for (let i = 0; i < lstPeople.length; i++) {
+            let IdB = "myButton" + lstPeople[i].id;
+            document.querySelector("#" + IdB).onclick = function () {
+            DelLigne(lstPeople[i].id);
+        };
+    }
+}
+
+document.querySelector("#AddPeople").onclick = function () {
+    let P = new People(document.querySelector("#Nom").value, document.querySelector("#Prenom").value, document.querySelector("#Age").value);
+    saveObj(P);
+}
+
+let DelLigne = function (id) {
+    console.log(id);
+    for (let j = 0; j < lstPeople.length; j++) {
+        if (lstPeople[j].id == id) {
+            lstPeople.splice(j, 1);
+        }
+    }
+    afficheTableau();
+}
+
+let saveObj = function (p) {
+        console.log("Dbt saveBDD");
+        const xhttp = new XMLHttpRequest();
+        const url = "serveur.php?nom="+p.nom+"&prenom="+p.prenom+"&age="+p.age;
+        xhttp.onload = function () {
+            if ((this.readyState == 4) && (this.status == 200)) {
+                // readystate = 4 sinifie appel finie
+                // Status = 200 résultat ok.
+
+                console.log(" == Réponse Brut == ");
+                console.log(this.responseText);
+
+                console.log(" == Réponse Convertie format JS == ");
+                // Manipuler du JSON 
+                // JSON.parse : String => objet JS
+                // JSON.stringify : Objet JS => String
+                const myP = JSON.parse(this.response);
+                console.log(myP);
+
+                lstPeople.push(myP);
+                afficheTableau();
+
+            } else {
+                console.log("Erreur");
+            }
+        }
+        // true : sinifie asynchrone.
+        xhttp.open("GET", url, true);
+        xhttp.send();
+
+        console.log("fin saveBDD");    
+    }
+
+    </script>
+
+<hr>
+
+<input type="text" id = "Nomex" value="testValue">
+<input type="button" id = "myButton" value = "Valider">
+
+<hr>
+
+
+<table>
+        <thead>
+            <tr>
+                    <TD>Id</TD><TD>Nom</TD><TD>Prenom</TD><TD>Age</TD><TD>Action</TD>
+            </tr>
+        </thead>
+        <tbody id = "lstPersonne">
+            <tr>
+                <TD>1</TD><TD>11</TD><TD>12</TD><TD>13</TD>
+            </tr>
+            <tr>
+                <TD>2</TD><TD>21</TD><TD>22</TD><TD>23</TD>
+            </tr>
+            <tr>
+                <TD>3</TD><TD>31</TD><TD>32</TD><TD>33</TD>
+            </tr>
+            <tr>
+                <TD>4</TD><TD>41</TD><TD>42</TD><TD>43</TD>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <TD></TD>
+                <TD><input type="text" id = "Nom" value="Entrer le nom"></TD>
+                <TD><input type="text" id = "Prenom" value="Entrere le prénom"></TD>
+                <TD><input type="text" id = "Age" value="Entrer l'age"></TD>
+                <TD><input type="button" id = "AddPeople" value = "Add"></TD>
+            </tr>
+        </tfoot>
+    </table>
+
+
+    <script type = "text/javascript">
+        const x = document.querySelectorAll("p")[0].innerHTML;
+        console.log(x);
+
+        const y = document.querySelector("#p1").innerHTML;
+        console.log(y);
+
+        const Z = document.querySelector("#Nomex").value;
+        console.log(Z);
+
+        document.querySelector("#myButton").onclick = function() {
+            console.log("Click ok");
+        }
+
+   </script>
+
+
+</body>
+</html>

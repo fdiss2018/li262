@@ -1,0 +1,40 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- New way -->
+    <script type = "text/javascript">
+        const xhttp = new XMLHttpRequest();
+        const url = "serveur.php?nom=Dupont&prenom=Martin&age=22";
+        xhttp.onload =function() {
+            if ((this.readyState == 4) && (this.status == 200)) {
+                // readystate = 4 sinifie appel finie
+                // Status = 200 résultat ok.
+
+                console.log(" == Réponse Brut == ");
+                console.log(this.responseText);
+
+                console.log(" == Réponse Convertie format JS == ");
+                // Manipuler du JSON 
+                // JSON.parse : String => objet JS
+                // JSON.stringify : Objet JS => String
+                const p = JSON.parse(this.response);
+                console.log(p);
+            } else {
+                console.log("Erreur");
+            }
+        }
+        // true : sinifie asynchrone.
+        xhttp.open("GET", url, true);
+        xhttp.send();
+
+    </script>
+      
+</head>
+<body>
+    
+</body>
+</html>
