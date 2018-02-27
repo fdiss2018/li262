@@ -22,7 +22,7 @@
         background-color : grey;
     }
 
-    tbody tr:first-child(2n) {
+    thead tr:first-child() {
         background-color : red;
     }
 
@@ -41,15 +41,109 @@
     
     <!-- New way -->
     <script type = "module">
-         import * as Module from './exercice7.js';
-             import * as Module from './exercice7.js';
+        let compteur_personne = 45;
+        let lstPeople = [];
+        
+        import {People} from './People.js';
+        import * as moduleA from './exercice7B.js';
+
+
+ function afficheTableau() {
+    document.querySelector("#lstPersonne").innerHTML = "";
+    for (let i = 0; i < lstPeople.length; i++) {
+
+        let IdB = "myButton" + lstPeople[i].Id;
+
+        document.querySelector("#lstPersonne").innerHTML += "<TR>";
+        document.querySelector("#lstPersonne").innerHTML += "<TD>" + lstPeople[i].Id + "</TD><TD>" + lstPeople[i].nom + "</TD><TD>" + lstPeople[i].prenom + "</TD><TD>" + lstPeople[i].age + "</TD>" + '<TD><input type="button" id = "' + IdB + '" value = "DEL"></TD>';
+        document.querySelector("#lstPersonne").innerHTML += "</TR>";
+
+        // console.log(document.querySelector("#"+Id)+ " _ " + Id);
+    }
+
+    for (let i = 0; i < lstPeople.length; i++) {
+        let IdB = "myButton" + lstPeople[i].Id;
+        document.querySelector("#" + IdB).onclick = function () {
+            DelLigne(lstPeople[i].Id);
+        };
+    }
+}
+
+document.querySelector("#AddPeople").onclick = function () {
+    let P = new People(compteur_personne++, document.querySelector("#Nom").value, document.querySelector("#Prenom").value, document.querySelector("#Age").value);
+    lstPeople.push(P);
+    afficheTableau();
+}
+
+let DelLigne = function (id) {
+    console.log(id);
+    for (let j = 0; j < lstPeople.length; j++) {
+        if (lstPeople[j].id == id) {
+            lstPeople.splice(j, 1);
+        }
+    }
+    afficheTableau();
+}
+
+
+
     </script>
 
-<tabl
-        <thead></thead>
-        <tbody></tbody>
-        <tfoot></tfoot>
+<hr>
 
+<input type="text" id = "Nomex" value="testValue">
+<input type="button" id = "myButton" value = "Valider">
+
+<hr>
+
+
+<table>
+        <thead>
+            <tr>
+                    <TD>Id</TD><TD>Nom</TD><TD>Prenom</TD><TD>Age</TD><TD>Action</TD>
+            </tr>
+        </thead>
+        <tbody id = "lstPersonne">
+            <tr>
+                <TD>1</TD><TD>11</TD><TD>12</TD><TD>13</TD>
+            </tr>
+            <tr>
+                <TD>2</TD><TD>21</TD><TD>22</TD><TD>23</TD>
+            </tr>
+            <tr>
+                <TD>3</TD><TD>31</TD><TD>32</TD><TD>33</TD>
+            </tr>
+            <tr>
+                <TD>4</TD><TD>41</TD><TD>42</TD><TD>43</TD>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <TD></TD>
+                <TD><input type="text" id = "Nom" value="Entrer le nom"></TD>
+                <TD><input type="text" id = "Prenom" value="Entrere le prénom"></TD>
+                <TD><input type="text" id = "Age" value="Entrer l'age"></TD>
+                <TD><input type="button" id = "AddPeople" value = "Add"></TD>
+            </tr>
+        </tfoot>
+    </table>
+
+
+    <script type = "text/javascript">
+        const x = document.querySelectorAll("p")[0].innerHTML;
+        console.log(x);
+
+        const y = document.querySelector("#p1").innerHTML;
+        console.log(y);
+
+        const Z = document.querySelector("#Nomex").value;
+        console.log(Z);
+
+        document.querySelector("#myButton").onclick = function() {
+            console.log("Click ok");
+        }
+
+   </script>
 
 
 </body>

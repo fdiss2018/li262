@@ -1,8 +1,10 @@
-class Toto{
-    constructor (nom, prenom, age = 18) {
+class People{
+    constructor (id, nom, prenom, age = 18) {
         this.nom = nom;
         this.prenom = prenom;
         this.age = age;
+        this.id = Math.floor(Math.random())*1000;
+        this.id = id;
     }
 
     getNomComplet(){
@@ -13,7 +15,11 @@ class Toto{
         return this.nom.toUpperCase() + " " + this.prenom;
     }
 
+    get Id() {
+        return this.id;
+    }
+
 }
 
-export {Toto};
+export {People};
 
