@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <style>
+            .pair {
+                background-color: red;
+            }
+            .impair {
+                background-color: grey;
+            }
+            TABLE {
+                background-color: grey;
+                border: solid;
+            }
+            thead {
+                background-color: rgba(0, 255, 200, 0.356);
+                border: solid;
+            }
+
+    </style>  
+
+    <script src="exercice1.js"></script>
+
+</head>
+<body>
+    <P id = "erreur"></P> 
+        <table>
+                <thead>
+                    <tr>
+                            <TD>Id</TD><TD>Nom</TD><TD>Prenom</TD><TD>Age</TD><TD>Action</TD>
+                    </tr>
+                </thead>
+                <tbody id = "lstPersonne">
+                </tbody>
+            </table>  
+
+
+</body>
+
+
+<script type="text/javascript">
+
+    try{
+        // throw "ereur";
+    }
+    catch (exception) {
+        document.querySelector("#erreur").innerHTML = exception;
+    }
+
+</script>
+</html>

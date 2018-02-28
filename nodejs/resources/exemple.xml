@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<utilisateurs>
+    <utilisateur id = "1">
+        <nom>hub</nom>
+        <prenom>Harry</prenom>
+        <prenom>Victor</prenom>
+    </utilisateur>
+    <utilisateur id = "2">
+        <nom>Aimar</nom>
+        <prenom>Jean</prenom>
+    </utilisateur>
+    <utilisateur id = "3">
+        <nom>Bou</nom>
+        <prenom>Herve</prenom>
+    </utilisateur>
+    <utilisateur >
+        <nom>Boula</nom>
+        <prenom>Marc</prenom>
+    </utilisateur>
+
+</utilisateurs>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <style>
+            .bloc {
+                width : 20000px;
+                height: 100px;
+                background-color: grey;
+            }
+            .montrer {
+                display: block;
+            }
+            .cacher {
+                display: none;
+            }
+
+    </style>  
+
+</head>
+<body>
+    
+<div id = "bloc1" class = "bloc">bloc 1</div>
+<div id = "bloc2" class = "bloc cacher">bloc 2</div>
+<button id = "btnBlc1" >Bouton 1</button>
+<button id = "btnBlc2" >Bouton 2</button>
+<button id = "btnVert" >Bouton 3</button>
+
+<script type = "text/javascript">
+$(document).ready(function() {
+
+    // Alterne les class CSS : (monter/cacher)
+    $("#btnBlc1").click(function(){
+
+        /* if ($("#bloc1").hasClass("cacher")) {
+            $("#bloc1").removeClass("cacher");
+        } else {
+            $("#bloc1").addClass("cacher");
+        }*/
+
+        // la même chose que ci-dessus mais en une passe: toggle = bouton poussoir
+        // $("#bloc1").toggleClass("cacher");
+        $("#bloc1").toggle(1000);
+
+    })
+
+    // supprime la class css
+    $("#btnBlc2").click(function(){
+        $("#bloc2").removeClass("cacher");
+    })
+
+    // supprime la class css
+    $("#btnVert").click(function(){
+        // $("#bloc1").css("background-color","green");
+        $("#bloc1").css(
+            // on peut aussi fournir un objet
+            {
+                "background-color" : "green",
+                "width" : "400px",
+            }    
+
+        );
+    })
+
+})
+</script>
+
+
+</body>
+</html>
