@@ -1,0 +1,72 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+<style>
+    p {
+        font-weight: bold
+    }
+
+    #p1 {
+        color: blue;
+    }
+
+    .rouge {
+        color: red;
+    }
+
+    tbody tr:nth-child(2n) {
+        background-color : grey;
+    }
+
+    thead tr:first-child() {
+        background-color : red;
+    }
+
+    tbody tr:last-child(2n) {
+        background-color : yellow;
+    }
+
+</style>  
+      
+</head>
+<body>
+
+    <!-- New way -->
+ 
+<table>
+        <thead>
+            <tr>
+                    <TD>Id</TD><TD>Nom</TD><TD>Prenom</TD><TD>Age</TD><TD>Action</TD>
+            </tr>
+        </thead>
+        <tbody id = "lstPersonne">
+        </tbody>
+        <tfoot>
+            <form id = "myForm" method="get" action="./register">
+             <tr>
+                <TD></TD>
+                <TD><input type="text" id = "Nom" name = "nom" placeholder="Entrer le nom"></TD>
+                <TD><input type="text" id = "Prenom" name = "prenom" placeholder="Entre le prénom"></TD>
+                <TD><input type="button" id = "register" value = "Valider"></TD>
+            </tr>
+           </form >
+        </tfoot>
+    </table>
+
+
+    <script type = "text/javascript">
+
+        document.querySelector("#register").onclick = function() {
+            document.querySelector("#myForm").submit();
+            //console.log("Click ok");
+        }
+
+   </script>
+
+
+</body>
+</html>
