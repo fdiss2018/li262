@@ -1,0 +1,15 @@
+html
+    head    
+        title Login
+    body
+        p #{message}
+        table
+            form(id = "myForm", method="post", action="/login")
+             tr
+                TD
+                    input(type="text", id = "email", name = "email", placeholder="Entrer le nom")
+                TD
+                    input(type="text", id = "password", name = "password", placeholder="Entre le prénom")
+                TD
+                    input(type="submit", id = "register", value = "Valider")
+                        

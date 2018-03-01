@@ -6,3 +6,19 @@ html
         h1#toto.pair Ci dessous formulaire
         a(href="https://amazon.com", target="_blank") aller sur amazon
         h2 Comptage
+        p ci dessous on va faire une boucle, du fait que la ligne ne commence pas par un tag HTML, PUG en déduit que c'est du JS.
+        p il faut mettre le signe - devant le javascript pour lever les ambiguité
+        p !!! Attention !!! : Dans le monde du dev : pas de tab et l'indentation se fait avec 4 espaces.
+        table
+            tbody
+                - let i = 1
+                each p in inventaire
+                    tr
+                        td #{i}
+                        td #{p.titre}                         
+                        if p.prix == null
+                            td pas de prix
+                        else
+                            td (#{p.prix}euro)
+                        - i++
+                        
